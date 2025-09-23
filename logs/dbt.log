@@ -1,0 +1,1430 @@
+[0m18:46:52.363685 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000244AB46FE20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000244AD712E50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000244AD712F70>]}
+
+
+============================== 18:46:52.369510 | 0695adcd-226a-4d22-bdab-c2a032c74b9d ==============================
+[0m18:46:52.369510 [info ] [MainThread]: Running with dbt=1.10.11
+[0m18:46:52.370646 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'warn_error': 'None', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'invocation_command': 'dbt debug', 'write_json': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'empty': 'None', 'partial_parse': 'True', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m18:46:52.403258 [info ] [MainThread]: dbt version: 1.10.11
+[0m18:46:52.404261 [info ] [MainThread]: python version: 3.9.23
+[0m18:46:52.405259 [info ] [MainThread]: python path: C:\Users\yshoo\anaconda3\envs\realestate_analytics\python.exe
+[0m18:46:52.406260 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m18:46:57.471578 [info ] [MainThread]: Using profiles dir at C:\Users\yshoo\.dbt
+[0m18:46:57.472629 [info ] [MainThread]: Using profiles.yml file at C:\Users\yshoo\.dbt\profiles.yml
+[0m18:46:57.473826 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\dbt_project.yml
+[0m18:46:57.476243 [info ] [MainThread]: adapter type: bigquery
+[0m18:46:57.477241 [info ] [MainThread]: adapter version: 1.10.2
+[0m18:46:57.662305 [info ] [MainThread]: Configuration:
+[0m18:46:57.664626 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:46:57.665628 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m18:46:57.666625 [info ] [MainThread]: Required dependencies:
+[0m18:46:57.666625 [debug] [MainThread]: Executing "git --help"
+[0m18:46:57.767596 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:46:57.768594 [debug] [MainThread]: STDERR: "b''"
+[0m18:46:57.769736 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:46:57.770736 [info ] [MainThread]: Connection:
+[0m18:46:57.771735 [info ] [MainThread]:   method: oauth
+[0m18:46:57.772813 [info ] [MainThread]:   database: real-estate-project-2025
+[0m18:46:57.772813 [info ] [MainThread]:   execution_project: real-estate-project-2025
+[0m18:46:57.774062 [info ] [MainThread]:   schema: real_estate_silver
+[0m18:46:57.775084 [info ] [MainThread]:   location: asia-northeast1
+[0m18:46:57.776441 [info ] [MainThread]:   priority: interactive
+[0m18:46:57.777890 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:46:57.778890 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:46:57.778890 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:46:57.780134 [info ] [MainThread]:   job_retries: 1
+[0m18:46:57.781188 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:46:57.782186 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:46:57.783190 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:46:57.784186 [info ] [MainThread]:   client_id: None
+[0m18:46:57.784186 [info ] [MainThread]:   token_uri: None
+[0m18:46:57.785666 [info ] [MainThread]:   compute_region: None
+[0m18:46:57.786666 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:46:57.787664 [info ] [MainThread]:   gcs_bucket: None
+[0m18:46:57.788669 [info ] [MainThread]:   dataproc_batch: None
+[0m18:46:57.789665 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m18:46:58.922178 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:46:58.923179 [debug] [MainThread]: On debug: select 1 as id
+[0m18:46:58.924299 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:47:12.215083 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:373b213e-5037-4db2-a3a7-ac90e1d5ecc2&page=queryresults
+[0m18:47:13.025861 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m18:47:13.027862 [info ] [MainThread]: [32mAll checks passed![0m
+[0m18:47:13.030148 [debug] [MainThread]: Command `dbt debug` succeeded at 18:47:13.030148 after 20.87 seconds
+[0m18:47:13.031150 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:47:13.032149 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000244AB46FE20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000244AD6B81C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000244BA969A60>]}
+[0m18:47:13.033150 [debug] [MainThread]: Flushing usage events
+[0m18:47:14.289966 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:40:09.213882 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDEE5FFEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDF08A2F70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDF08A21C0>]}
+
+
+============================== 21:40:09.223670 | cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3 ==============================
+[0m21:40:09.223670 [info ] [MainThread]: Running with dbt=1.10.11
+[0m21:40:09.226272 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'quiet': 'False', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'invocation_command': 'dbt run', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'empty': 'False', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m21:40:16.905864 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFD97DCA0>]}
+[0m21:40:17.012086 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFDA09790>]}
+[0m21:40:17.013401 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m21:40:18.222496 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m21:40:18.225500 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m21:40:18.226498 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFDAA0E50>]}
+[0m21:40:20.519335 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'my_first_dbt_model' in the 'models' section of file 'models\example\schema.yml'
+[0m21:40:20.522963 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'my_second_dbt_model' in the 'models' section of file 'models\example\schema.yml'
+[0m21:40:20.891243 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.realestate_analytics.unique_my_first_dbt_model_id.16e066b321' (models\example\schema.yml) depends on a node named 'my_first_dbt_model' in package '' which was not found
+[0m21:40:20.892242 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.realestate_analytics.not_null_my_first_dbt_model_id.5fb22c2710' (models\example\schema.yml) depends on a node named 'my_first_dbt_model' in package '' which was not found
+[0m21:40:20.894244 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.realestate_analytics.unique_my_second_dbt_model_id.57a0f8c493' (models\example\schema.yml) depends on a node named 'my_second_dbt_model' in package '' which was not found
+[0m21:40:20.895247 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.realestate_analytics.not_null_my_second_dbt_model_id.151b76d778' (models\example\schema.yml) depends on a node named 'my_second_dbt_model' in package '' which was not found
+[0m21:40:21.064610 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.dbt_project.example
+[0m21:40:21.083698 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFF4FA130>]}
+[0m21:40:21.506556 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m21:40:21.511671 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m21:40:21.580431 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDECC9D3A0>]}
+[0m21:40:21.581436 [info ] [MainThread]: Found 1 model, 1 source, 495 macros
+[0m21:40:21.582463 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFD936A90>]}
+[0m21:40:21.584461 [info ] [MainThread]: 
+[0m21:40:21.584461 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m21:40:21.585863 [info ] [MainThread]: 
+[0m21:40:21.587296 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m21:40:21.589622 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m21:40:21.590625 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m21:40:28.235615 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_real-estate-project-2025, now create_real-estate-project-2025_real_estate_silver)
+[0m21:40:28.236843 [debug] [ThreadPool]: Creating schema "database: "real-estate-project-2025"
+schema: "real_estate_silver"
+"
+[0m21:40:28.253753 [debug] [ThreadPool]: On create_real-estate-project-2025_real_estate_silver: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "connection_name": "create_real-estate-project-2025_real_estate_silver"} */
+create schema if not exists `real-estate-project-2025`.`real_estate_silver`
+  
+[0m21:40:28.254753 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m21:40:29.211398 [debug] [ThreadPool]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:aa595800-bb0a-4822-98a0-b32c97ca15f8&page=queryresults
+[0m21:40:32.579224 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m21:40:32.580670 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m21:40:33.342372 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFE48DD00>]}
+[0m21:40:33.344371 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:40:33.355371 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m21:40:33.357373 [info ] [Thread-1  ]: 1 of 1 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m21:40:33.359371 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_transactions'
+[0m21:40:33.361691 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m21:40:33.379803 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m21:40:33.383804 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m21:40:33.429804 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m21:40:33.435858 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+WITH source AS (
+    -- データソースをraw_landに一本化
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_land`
+),
+
+renamed_and_casted AS (
+    -- カラム名を英語に変換し、基本的なデータ型を変換する
+    SELECT
+        type AS transaction_type,
+        region,
+        city_code,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        built_year,
+        building_structure,
+        purpose,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        -- 「取引時期」を日付型に変換
+        CAST(
+            REPLACE(
+                REPLACE(
+                    REPLACE(
+                        REPLACE(transaction_period, '年第1四半期', '-01-01'),
+                    '年第2四半期', '-04-01'),
+                '年第3四半期', '-07-01'),
+            '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes
+    FROM
+        source
+),
+
+add_building_age AS (
+    -- 建築年を西暦に変換し、築年数を計算する
+    SELECT
+        *,
+        -- 「建築年」を西暦の数値に変換
+        CASE
+            WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+        END AS built_year_ad
+    FROM
+        renamed_and_casted
+)
+
+-- 最終的なSELECT文
+SELECT
+    *,
+    -- 取引時点での築年数を計算（建築年が不明な場合はNULL）
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction
+FROM
+    add_building_age;
+
+
+[0m21:40:33.438111 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m21:40:34.577961 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:8c859253-eb27-4cc0-a276-c3a507d437d5&page=queryresults
+[0m21:40:34.973717 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'cf02cb3a-8512-4b02-9ce7-a2b74d3dccd3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDF78A7A60>]}
+[0m21:40:34.974715 [info ] [Thread-1  ]: 1 of 1 OK created sql view model real_estate_silver.stg_transactions ........... [[32mCREATE VIEW (0 processed)[0m in 1.61s]
+[0m21:40:34.979358 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m21:40:34.982237 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m21:40:34.983736 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m21:40:34.984746 [debug] [MainThread]: Connection 'create_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m21:40:34.985752 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m21:40:34.986770 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m21:40:34.988009 [info ] [MainThread]: 
+[0m21:40:34.989049 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 13.40 seconds (13.40s).
+[0m21:40:34.991510 [debug] [MainThread]: Command end result
+[0m21:40:35.035625 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m21:40:35.041878 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m21:40:35.052432 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m21:40:35.052432 [info ] [MainThread]: 
+[0m21:40:35.054925 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m21:40:35.054925 [info ] [MainThread]: 
+[0m21:40:35.056919 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m21:40:35.058918 [debug] [MainThread]: Command `dbt run` succeeded at 21:40:35.058918 after 25.98 seconds
+[0m21:40:35.059919 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDEE5FFEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDEF995D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FDFE16F820>]}
+[0m21:40:35.060918 [debug] [MainThread]: Flushing usage events
+[0m21:40:36.360258 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:00:09.316286 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023A03D1FE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023A050ACE50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023A05F5A190>]}
+
+
+============================== 22:00:09.325626 | 763029a4-c867-443a-b101-353cf112d0b3 ==============================
+[0m22:00:09.325626 [info ] [MainThread]: Running with dbt=1.10.11
+[0m22:00:09.327630 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'partial_parse': 'True', 'no_print': 'None', 'empty': 'None', 'invocation_command': 'dbt debug', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m22:00:09.390656 [info ] [MainThread]: dbt version: 1.10.11
+[0m22:00:09.391654 [info ] [MainThread]: python version: 3.9.23
+[0m22:00:09.392653 [info ] [MainThread]: python path: C:\Users\yshoo\anaconda3\envs\realestate_analytics\python.exe
+[0m22:00:09.393877 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m22:00:17.062697 [info ] [MainThread]: Using profiles dir at C:\Users\yshoo\.dbt
+[0m22:00:17.065042 [info ] [MainThread]: Using profiles.yml file at C:\Users\yshoo\.dbt\profiles.yml
+[0m22:00:17.066044 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\dbt_project.yml
+[0m22:00:17.067374 [info ] [MainThread]: adapter type: bigquery
+[0m22:00:17.067374 [info ] [MainThread]: adapter version: 1.10.2
+[0m22:00:17.258075 [info ] [MainThread]: Configuration:
+[0m22:00:17.260368 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m22:00:17.262585 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m22:00:17.263583 [info ] [MainThread]: Required dependencies:
+[0m22:00:17.263583 [debug] [MainThread]: Executing "git --help"
+[0m22:00:17.351517 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m22:00:17.352516 [debug] [MainThread]: STDERR: "b''"
+[0m22:00:17.354644 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m22:00:17.355855 [info ] [MainThread]: Connection:
+[0m22:00:17.356375 [info ] [MainThread]:   method: oauth
+[0m22:00:17.357641 [info ] [MainThread]:   database: real-estate-project-2025
+[0m22:00:17.358728 [info ] [MainThread]:   execution_project: real-estate-project-2025
+[0m22:00:17.359731 [info ] [MainThread]:   schema: real_estate_silver
+[0m22:00:17.360726 [info ] [MainThread]:   location: asia-northeast1
+[0m22:00:17.361725 [info ] [MainThread]:   priority: interactive
+[0m22:00:17.361725 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m22:00:17.362742 [info ] [MainThread]:   impersonate_service_account: None
+[0m22:00:17.364232 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m22:00:17.364232 [info ] [MainThread]:   job_retries: 1
+[0m22:00:17.365255 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m22:00:17.366637 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m22:00:17.367672 [info ] [MainThread]:   timeout_seconds: 300
+[0m22:00:17.368674 [info ] [MainThread]:   client_id: None
+[0m22:00:17.369928 [info ] [MainThread]:   token_uri: None
+[0m22:00:17.369928 [info ] [MainThread]:   compute_region: None
+[0m22:00:17.370973 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m22:00:17.372992 [info ] [MainThread]:   gcs_bucket: None
+[0m22:00:17.372992 [info ] [MainThread]:   dataproc_batch: None
+[0m22:00:17.374073 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m22:00:18.997688 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m22:00:18.999038 [debug] [MainThread]: On debug: select 1 as id
+[0m22:00:19.000037 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:00:29.028252 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:28a9cd95-c92e-4378-a791-77bfe0bf0a8d&page=queryresults
+[0m22:00:29.887485 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m22:00:29.889504 [info ] [MainThread]: [32mAll checks passed![0m
+[0m22:00:29.891498 [debug] [MainThread]: Command `dbt debug` succeeded at 22:00:29.891498 after 20.76 seconds
+[0m22:00:29.892499 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m22:00:29.892499 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023A03D1FE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023A132443D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023A05F7D940>]}
+[0m22:00:29.893501 [debug] [MainThread]: Flushing usage events
+[0m22:00:31.374253 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:00:40.348900 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000225276FFE50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000225299A1F40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000225299A1190>]}
+
+
+============================== 22:00:40.356011 | ab8796fc-7ffc-455d-a0f2-04b26dd74a17 ==============================
+[0m22:00:40.356011 [info ] [MainThread]: Running with dbt=1.10.11
+[0m22:00:40.358179 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'partial_parse': 'True', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'no_print': 'None', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'empty': 'False', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m22:00:46.424935 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022536A8EBB0>]}
+[0m22:00:46.530771 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002252C49F1C0>]}
+[0m22:00:46.532080 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m22:00:47.787301 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m22:00:48.333796 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 0 files added, 1 files changed.
+[0m22:00:48.334796 [debug] [MainThread]: Partial parsing: updated file: realestate_analytics://models\stg_transactions.sql
+[0m22:00:48.788440 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.dbt_project.example
+[0m22:00:48.819443 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002253738A130>]}
+[0m22:00:48.966273 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m22:00:48.973358 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m22:00:49.027730 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002253732D310>]}
+[0m22:00:49.028730 [info ] [MainThread]: Found 1 model, 1 source, 495 macros
+[0m22:00:49.029729 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022537395130>]}
+[0m22:00:49.032730 [info ] [MainThread]: 
+[0m22:00:49.033730 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:00:49.034730 [info ] [MainThread]: 
+[0m22:00:49.036730 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m22:00:49.039579 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m22:00:49.040602 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:00:52.948078 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m22:00:52.949078 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:00:53.634630 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022536FD6E80>]}
+[0m22:00:53.636648 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:00:53.646736 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m22:00:53.648738 [info ] [Thread-1  ]: 1 of 1 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m22:00:53.650820 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_transactions'
+[0m22:00:53.651818 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m22:00:53.671842 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m22:00:53.675842 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m22:00:53.729343 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m22:00:53.733345 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+WITH source AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_land`
+),
+
+renamed_and_casted AS (
+    SELECT
+        type AS transaction_type,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        built_year AS built_year_original,
+        building_structure,
+        purpose,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        CAST(
+            REPLACE(REPLACE(REPLACE(REPLACE(transaction_period, '年第1四半期', '-01-01'), '年第2四半期', '-04-01'), '年第3四半期', '-07-01'), '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes
+    FROM
+        source
+),
+
+with_ad_year AS (
+    SELECT
+        *,
+        CASE
+            WHEN STARTS_WITH(built_year_original, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year_original, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year_original, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year_original, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year_original, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year_original, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year_original, r'(\d+)') AS INT64)
+        END AS built_year_ad
+    FROM
+        renamed_and_casted
+)
+
+SELECT
+    * EXCEPT (built_year_original, built_year_ad),
+    built_year_ad AS built_year,
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+
+    -- ★★★ ここが「LDK」を切り出すように修正したロジック ★★★
+    CASE
+        WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
+        WHEN floor_plan = '１ＤＫ' THEN '1DK'
+        WHEN floor_plan = '１ＬＤＫ' THEN '1LDK'
+        WHEN floor_plan IN ('２Ｋ', '２ＤＫ') THEN '2K/DK'
+        WHEN floor_plan = '２ＬＤＫ' THEN '2LDK'
+        WHEN floor_plan IN ('３Ｋ', '３ＤＫ') THEN '3K/DK'
+        WHEN floor_plan = '３ＬＤＫ' THEN '3LDK'
+        WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
+        ELSE 'Other'
+    END AS floor_plan_category
+    -- ★★★ ここまで ★★★
+FROM
+    with_ad_year;
+
+
+[0m22:00:53.734791 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m22:00:54.595344 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:61f98586-b3ea-4530-a9ec-efb60264fa79&page=queryresults
+[0m22:00:55.541820 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ab8796fc-7ffc-455d-a0f2-04b26dd74a17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022537481280>]}
+[0m22:00:55.543937 [info ] [Thread-1  ]: 1 of 1 OK created sql view model real_estate_silver.stg_transactions ........... [[32mCREATE VIEW (0 processed)[0m in 1.89s]
+[0m22:00:55.546001 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m22:00:55.548503 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:00:55.550734 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:00:55.551733 [debug] [MainThread]: Connection 'list_real-estate-project-2025' was properly closed.
+[0m22:00:55.552735 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m22:00:55.553877 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m22:00:55.554873 [info ] [MainThread]: 
+[0m22:00:55.555867 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 6.52 seconds (6.52s).
+[0m22:00:55.557971 [debug] [MainThread]: Command end result
+[0m22:00:55.595741 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m22:00:55.601221 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m22:00:55.613006 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m22:00:55.614061 [info ] [MainThread]: 
+[0m22:00:55.616060 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m22:00:55.617209 [info ] [MainThread]: 
+[0m22:00:55.618418 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m22:00:55.621552 [debug] [MainThread]: Command `dbt run` succeeded at 22:00:55.620552 after 15.40 seconds
+[0m22:00:55.621552 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000225276FFE50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022536C90430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002252C49F1C0>]}
+[0m22:00:55.622832 [debug] [MainThread]: Flushing usage events
+[0m22:00:56.853183 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:07:59.296631 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002353C67FEB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002353E921F10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002353E921220>]}
+
+
+============================== 21:07:59.306947 | 89657983-5d1a-46f9-bb29-d0f6fb446b93 ==============================
+[0m21:07:59.306947 [info ] [MainThread]: Running with dbt=1.10.11
+[0m21:07:59.306947 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'quiet': 'False', 'partial_parse': 'True', 'empty': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m21:08:06.789802 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354BA38400>]}
+[0m21:08:06.882756 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354BA47C40>]}
+[0m21:08:06.882756 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m21:08:07.968775 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m21:08:08.419066 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m21:08:08.419066 [debug] [MainThread]: Partial parsing: updated file: realestate_analytics://models\stg_transactions.sql
+[0m21:08:08.799883 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.dbt_project.example
+[0m21:08:08.832156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354C2D6130>]}
+[0m21:08:08.976436 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m21:08:08.992169 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m21:08:09.055147 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354C2EFCA0>]}
+[0m21:08:09.055147 [info ] [MainThread]: Found 1 model, 1 source, 495 macros
+[0m21:08:09.055147 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354C0F6D90>]}
+[0m21:08:09.055147 [info ] [MainThread]: 
+[0m21:08:09.055147 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m21:08:09.055147 [info ] [MainThread]: 
+[0m21:08:09.055147 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m21:08:09.055147 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m21:08:09.055147 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m21:08:17.531650 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m21:08:17.531650 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m21:08:18.245548 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354BA89DC0>]}
+[0m21:08:18.245548 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:08:18.268132 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m21:08:18.268132 [info ] [Thread-1  ]: 1 of 1 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m21:08:18.271219 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_transactions'
+[0m21:08:18.271219 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m21:08:18.278622 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m21:08:18.278622 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m21:08:18.330137 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m21:08:18.330137 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+WITH source AS (
+    -- データソースとしてraw_landテーブルを指定
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_land`
+),
+
+interim AS (
+    -- データ型変換、基本的な計算、リネームを行う
+    SELECT
+        -- 元のCSVの列順を維持しつつ、変換処理を記述
+        type AS transaction_type,
+        price_info_type,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        SAFE_CAST(price_per_sq_m AS INT64) AS price_per_sq_m,
+        land_shape,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        building_structure,
+        purpose,
+        future_purpose,
+        road_direction,
+        road_type,
+        SAFE_CAST(road_width_m AS FLOAT64) AS road_width_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        CAST(
+            REPLACE(REPLACE(REPLACE(REPLACE(transaction_period, '年第1四半期', '-01-01'), '年第2四半期', '-04-01'), '年第3四半期', '-07-01'), '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes,
+
+        -- 西暦の建築年を計算 (後でリネーム)
+        CASE
+            WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+        END AS built_year_ad,
+
+        -- 間取りのカテゴリ分類を計算
+        CASE
+            WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
+            WHEN floor_plan = '１ＤＫ' THEN '1DK'
+            WHEN floor_plan = '１ＬＤＫ' THEN '1LDK'
+            WHEN floor_plan IN ('２Ｋ', '２ＤＫ') THEN '2K/DK'
+            WHEN floor_plan = '２ＬＤＫ' THEN '2LDK'
+            WHEN floor_plan IN ('３Ｋ', '３ＤＫ') THEN '3K/DK'
+            WHEN floor_plan = '３ＬＤＫ' THEN '3LDK'
+            WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
+            ELSE 'Other'
+        END AS floor_plan_category
+
+    FROM
+        source
+)
+
+-- 最終的な列の選択と順番の定義
+SELECT
+    transaction_type,
+    price_info_type,
+    prefecture,
+    city_name,
+    district_name,
+    station_name,
+    distance_to_station_min,
+    total_price_jpy,
+    price_per_tsubo_jpy,
+    floor_plan,
+    floor_plan_category, -- 間取りの隣にカテゴリを配置
+    area_sq_m,
+    price_per_sq_m,
+    land_shape,
+    frontage_m,
+    total_floor_area_sq_m,
+    built_year_ad AS built_year, -- 西暦の建築年をここに配置
+    -- 建築年の隣に築年数を配置
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+    building_structure,
+    purpose,
+    future_purpose,
+    road_direction,
+    road_type,
+    road_width_m,
+    city_planning,
+    building_coverage_ratio_pct,
+    floor_area_ratio_pct,
+    transaction_date,
+    renovation,
+    special_notes
+FROM
+    interim;
+
+
+[0m21:08:18.330137 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m21:08:19.499289 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:ee2b280d-8e74-4d7b-99ea-35b85cb89064&page=queryresults
+[0m21:08:20.317024 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '89657983-5d1a-46f9-bb29-d0f6fb446b93', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354C3EF5B0>]}
+[0m21:08:20.319172 [info ] [Thread-1  ]: 1 of 1 OK created sql view model real_estate_silver.stg_transactions ........... [[32mCREATE VIEW (0 processed)[0m in 2.05s]
+[0m21:08:20.320493 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m21:08:20.320493 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m21:08:20.320493 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m21:08:20.325319 [debug] [MainThread]: Connection 'list_real-estate-project-2025' was properly closed.
+[0m21:08:20.325319 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m21:08:20.325319 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m21:08:20.325319 [info ] [MainThread]: 
+[0m21:08:20.329225 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 11.27 seconds (11.27s).
+[0m21:08:20.329225 [debug] [MainThread]: Command end result
+[0m21:08:20.370887 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m21:08:20.374323 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m21:08:20.383617 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m21:08:20.383617 [info ] [MainThread]: 
+[0m21:08:20.383617 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m21:08:20.383617 [info ] [MainThread]: 
+[0m21:08:20.383617 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m21:08:20.383617 [debug] [MainThread]: Command `dbt run` succeeded at 21:08:20.383617 after 21.26 seconds
+[0m21:08:20.383617 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002353C67FEB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002353E04F670>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002354BA47C40>]}
+[0m21:08:20.396068 [debug] [MainThread]: Flushing usage events
+[0m21:08:21.626531 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:21:57.913881 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBA7C4FE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBA9EF1F40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBA9EF11C0>]}
+
+
+============================== 21:21:57.927507 | 027b7f9a-2147-4522-8dd7-0a948443ba13 ==============================
+[0m21:21:57.927507 [info ] [MainThread]: Running with dbt=1.10.11
+[0m21:21:57.929983 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'partial_parse': 'True', 'warn_error': 'None', 'empty': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m21:22:03.279362 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB6FDE670>]}
+[0m21:22:03.376423 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBA9E672B0>]}
+[0m21:22:03.378431 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m21:22:04.400435 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m21:22:04.778654 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m21:22:04.778654 [debug] [MainThread]: Partial parsing: updated file: realestate_analytics://models\stg_transactions.sql
+[0m21:22:05.171759 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.dbt_project.example
+[0m21:22:05.189683 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB78A0FD0>]}
+[0m21:22:05.332148 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m21:22:05.349720 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m21:22:05.393383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB78839A0>]}
+[0m21:22:05.395395 [info ] [MainThread]: Found 1 model, 1 source, 495 macros
+[0m21:22:05.395395 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB76CAFA0>]}
+[0m21:22:05.397405 [info ] [MainThread]: 
+[0m21:22:05.399415 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m21:22:05.399415 [info ] [MainThread]: 
+[0m21:22:05.399415 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m21:22:05.404207 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m21:22:05.404207 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m21:22:10.767010 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m21:22:10.768457 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m21:22:11.447476 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB77F8790>]}
+[0m21:22:11.447476 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:22:11.460022 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m21:22:11.461032 [info ] [Thread-1  ]: 1 of 1 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m21:22:11.461032 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_transactions'
+[0m21:22:11.461032 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m21:22:11.478475 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m21:22:11.481310 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m21:22:11.525143 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m21:22:11.527843 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+WITH source AS (
+    -- データソースとしてraw_landテーブルを指定
+    SELECT 
+        * 
+    FROM 
+        `real-estate-project-2025`.`real_estate_bronze`.`raw_land`
+    WHERE
+        type NOT IN ('林地', '農地')
+),
+
+interim AS (
+    -- データ型変換、基本的な計算、リネームを行う
+    SELECT
+        -- 元のCSVの列順を維持しつつ、変換処理を記述
+        type AS transaction_type,
+        price_info_type,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        SAFE_CAST(price_per_sq_m AS INT64) AS price_per_sq_m,
+        land_shape,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        building_structure,
+        purpose,
+        future_purpose,
+        road_direction,
+        road_type,
+        SAFE_CAST(road_width_m AS FLOAT64) AS road_width_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        CAST(
+            REPLACE(REPLACE(REPLACE(REPLACE(transaction_period, '年第1四半期', '-01-01'), '年第2四半期', '-04-01'), '年第3四半期', '-07-01'), '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes,
+
+        -- 西暦の建築年を計算 (後でリネーム)
+        CASE
+            WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+        END AS built_year_ad,
+
+        -- 間取りのカテゴリ分類を計算
+        CASE
+            WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
+            WHEN floor_plan = '１ＤＫ' THEN '1DK'
+            WHEN floor_plan = '１ＬＤＫ' THEN '1LDK'
+            WHEN floor_plan IN ('２Ｋ', '２ＤＫ') THEN '2K/DK'
+            WHEN floor_plan = '２ＬＤＫ' THEN '2LDK'
+            WHEN floor_plan IN ('３Ｋ', '３ＤＫ') THEN '3K/DK'
+            WHEN floor_plan = '３ＬＤＫ' THEN '3LDK'
+            WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
+            ELSE 'Other'
+        END AS floor_plan_category
+
+    FROM
+        source
+)
+
+-- 最終的な列の選択と順番の定義
+SELECT
+    transaction_type,
+    price_info_type,
+    prefecture,
+    city_name,
+    district_name,
+    station_name,
+    distance_to_station_min,
+    total_price_jpy,
+    price_per_tsubo_jpy,
+    floor_plan,
+    floor_plan_category, -- 間取りの隣にカテゴリを配置
+    area_sq_m,
+    price_per_sq_m,
+    land_shape,
+    frontage_m,
+    total_floor_area_sq_m,
+    built_year_ad AS built_year, -- 西暦の建築年をここに配置
+    -- 建築年の隣に築年数を配置
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+    building_structure,
+    purpose,
+    future_purpose,
+    road_direction,
+    road_type,
+    road_width_m,
+    city_planning,
+    building_coverage_ratio_pct,
+    floor_area_ratio_pct,
+    transaction_date,
+    renovation,
+    special_notes
+FROM
+    interim;
+
+
+[0m21:22:11.527843 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m21:22:12.539173 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:45260021-c87c-4827-90be-d5768e315a2a&page=queryresults
+[0m21:22:13.409288 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '027b7f9a-2147-4522-8dd7-0a948443ba13', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB898D7F0>]}
+[0m21:22:13.409288 [info ] [Thread-1  ]: 1 of 1 OK created sql view model real_estate_silver.stg_transactions ........... [[32mCREATE VIEW (0 processed)[0m in 1.95s]
+[0m21:22:13.413336 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m21:22:13.416080 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m21:22:13.416080 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m21:22:13.416080 [debug] [MainThread]: Connection 'list_real-estate-project-2025' was properly closed.
+[0m21:22:13.416080 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m21:22:13.416080 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m21:22:13.416080 [info ] [MainThread]: 
+[0m21:22:13.416080 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 8.02 seconds (8.02s).
+[0m21:22:13.416080 [debug] [MainThread]: Command end result
+[0m21:22:13.447855 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m21:22:13.461730 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m21:22:13.478631 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m21:22:13.478631 [info ] [MainThread]: 
+[0m21:22:13.478631 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m21:22:13.478631 [info ] [MainThread]: 
+[0m21:22:13.478631 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m21:22:13.478631 [debug] [MainThread]: Command `dbt run` succeeded at 21:22:13.478631 after 15.70 seconds
+[0m21:22:13.484403 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBA7C4FE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBA9E672B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DBB78EA4C0>]}
+[0m21:22:13.484403 [debug] [MainThread]: Flushing usage events
+[0m21:22:14.693473 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:52:05.356359 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001359D28FEB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001359F531F10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001359F5311F0>]}
+
+
+============================== 12:52:05.364833 | f3c27e64-ac25-4ed1-8160-db31ffdf42dd ==============================
+[0m12:52:05.364833 [info ] [MainThread]: Running with dbt=1.10.11
+[0m12:52:05.365833 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'write_json': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False', 'empty': 'False', 'partial_parse': 'True', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m12:52:12.415991 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135AC5F3C40>]}
+[0m12:52:12.516059 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135AC66D460>]}
+[0m12:52:12.517062 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m12:52:13.619539 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m12:52:14.089012 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m12:52:14.091161 [debug] [MainThread]: Partial parsing: updated file: realestate_analytics://models\stg_transactions.sql
+[0m12:52:14.490209 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.dbt_project.example
+[0m12:52:14.516193 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135ACEE1E80>]}
+[0m12:52:14.650349 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m12:52:14.656123 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m12:52:14.720689 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135ACEC3190>]}
+[0m12:52:14.721688 [info ] [MainThread]: Found 1 model, 1 source, 495 macros
+[0m12:52:14.722687 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135ACEE11C0>]}
+[0m12:52:14.725691 [info ] [MainThread]: 
+[0m12:52:14.725691 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m12:52:14.726695 [info ] [MainThread]: 
+[0m12:52:14.728753 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m12:52:14.730767 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m12:52:14.730767 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m12:52:22.669161 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m12:52:22.670175 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m12:52:23.382988 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135ACF21FA0>]}
+[0m12:52:23.383988 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m12:52:23.400095 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m12:52:23.401097 [info ] [Thread-1  ]: 1 of 1 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m12:52:23.403365 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_transactions'
+[0m12:52:23.403872 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m12:52:23.419885 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m12:52:23.423880 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m12:52:23.472446 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m12:52:23.476937 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+WITH source AS (
+    -- データソースとしてraw_landテーブルを指定し、林地と農地を除外する
+    SELECT
+        *
+    FROM
+        `real-estate-project-2025`.`real_estate_bronze`.`raw_land`
+    WHERE
+        type NOT IN ('林地', '農地')
+),
+
+interim AS (
+    -- データ型変換、基本的な計算、リネームを行う
+    SELECT
+        type AS transaction_type,
+        price_info_type,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        SAFE_CAST(price_per_sq_m AS INT64) AS price_per_sq_m,
+        land_shape,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        building_structure,
+        purpose,
+        future_purpose,
+        road_direction,
+        road_type,
+        SAFE_CAST(road_width_m AS FLOAT64) AS road_width_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        CAST(
+            REPLACE(REPLACE(REPLACE(REPLACE(transaction_period, '年第1四半期', '-01-01'), '年第2四半期', '-04-01'), '年第3四半期', '-07-01'), '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes,
+
+        -- 西暦の建築年を計算 (後でリネーム)
+        CASE
+            WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+        END AS built_year_ad,
+
+        -- 間取りのカテゴリ分類を計算
+        CASE
+            WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
+            WHEN floor_plan = '１ＤＫ' THEN '1DK'
+            WHEN floor_plan = '１ＬＤＫ' THEN '1LDK'
+            WHEN floor_plan IN ('２Ｋ', '２ＤＫ') THEN '2K/DK'
+            WHEN floor_plan = '２ＬＤＫ' THEN '2LDK'
+            WHEN floor_plan IN ('３Ｋ', '３ＤＫ') THEN '3K/DK'
+            WHEN floor_plan = '３ＬＤＫ' THEN '3LDK'
+            WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
+            ELSE 'Other'
+        END AS floor_plan_category,
+
+        -- ★★★ ここが命名を最終調整したロジック ★★★
+        CASE
+            -- まず「純粋な」構造を完全一致で定義
+            WHEN building_structure = 'ＳＲＣ' THEN 'SRC'
+            WHEN building_structure = 'ＲＣ' THEN 'RC'
+            WHEN building_structure IN ('鉄骨造', '軽量鉄骨造') THEN '鉄骨造'
+            WHEN building_structure = '木造' THEN '木造'
+            -- 次に「複合構造」を優先度順に部分一致で定義
+            WHEN building_structure LIKE '%ＳＲＣ%' OR building_structure LIKE '%ＲＣ%' THEN '複合SRC/RC'
+            WHEN building_structure LIKE '%鉄骨%' THEN '複合鉄骨'
+            WHEN building_structure LIKE '%木造%' THEN '複合木造'
+            -- それ以外
+            WHEN building_structure IS NULL THEN NULL
+            ELSE 'その他'
+        END AS building_structure_category
+        -- ★★★ ここまで ★★★
+
+    FROM
+        source
+)
+
+-- 最終的な列の選択と順番の定義
+SELECT
+    transaction_type,
+    price_info_type,
+    prefecture,
+    city_name,
+    district_name,
+    station_name,
+    distance_to_station_min,
+    total_price_jpy,
+    price_per_tsubo_jpy,
+    floor_plan,
+    floor_plan_category,
+    area_sq_m,
+    price_per_sq_m,
+    land_shape,
+    frontage_m,
+    total_floor_area_sq_m,
+    built_year_ad AS built_year,
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+    building_structure,
+    building_structure_category, -- 建物の構造の隣にカテゴリを配置
+    purpose,
+    future_purpose,
+    road_direction,
+    road_type,
+    road_width_m,
+    city_planning,
+    building_coverage_ratio_pct,
+    floor_area_ratio_pct,
+    transaction_date,
+    renovation,
+    special_notes
+FROM
+    interim;
+
+
+[0m12:52:23.478936 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m12:52:24.588752 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:f5c58f32-c82d-4f62-8ff3-afea2f4cbf90&page=queryresults
+[0m12:52:25.334219 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f3c27e64-ac25-4ed1-8160-db31ffdf42dd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135ACFFE760>]}
+[0m12:52:25.336486 [info ] [Thread-1  ]: 1 of 1 OK created sql view model real_estate_silver.stg_transactions ........... [[32mCREATE VIEW (0 processed)[0m in 1.93s]
+[0m12:52:25.336486 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m12:52:25.338964 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m12:52:25.340446 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m12:52:25.341581 [debug] [MainThread]: Connection 'list_real-estate-project-2025' was properly closed.
+[0m12:52:25.341581 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m12:52:25.342581 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m12:52:25.342581 [info ] [MainThread]: 
+[0m12:52:25.345035 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 10.61 seconds (10.61s).
+[0m12:52:25.347286 [debug] [MainThread]: Command end result
+[0m12:52:25.385884 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m12:52:25.391361 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m12:52:25.402793 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m12:52:25.404010 [info ] [MainThread]: 
+[0m12:52:25.405014 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m12:52:25.406012 [info ] [MainThread]: 
+[0m12:52:25.407010 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m12:52:25.409079 [debug] [MainThread]: Command `dbt run` succeeded at 12:52:25.409079 after 20.27 seconds
+[0m12:52:25.410450 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001359D28FEB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001359B826EB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000135ACD08B80>]}
+[0m12:52:25.411755 [debug] [MainThread]: Flushing usage events
+[0m12:52:26.692861 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m14:18:50.250826 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263EE43FDF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263EF84F250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263EFE4A100>]}
+
+
+============================== 14:18:50.259343 | b7da06b6-9571-4b1c-b0d3-8b044c7ec1f5 ==============================
+[0m14:18:50.259343 [info ] [MainThread]: Running with dbt=1.10.11
+[0m14:18:50.260350 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'partial_parse': 'True', 'warn_error': 'None', 'quiet': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'write_json': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'empty': 'False', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'use_experimental_parser': 'False', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m14:18:56.918289 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b7da06b6-9571-4b1c-b0d3-8b044c7ec1f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263FD8499D0>]}
+[0m14:18:57.016792 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b7da06b6-9571-4b1c-b0d3-8b044c7ec1f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263FD7B03D0>]}
+[0m14:18:57.017793 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m14:18:58.342857 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m14:18:58.870369 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 1 files added, 1 files changed.
+[0m14:18:58.871370 [debug] [MainThread]: Partial parsing: added file: realestate_analytics://models\stg_zipcodes.sql
+[0m14:18:58.872372 [debug] [MainThread]: Partial parsing: updated file: realestate_analytics://models\stg_transactions.sql
+[0m14:18:59.185776 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.realestate_analytics.stg_zipcodes' (models\stg_zipcodes.sql) depends on a source named 'real_estate_bronze.raw_zipcode' which was not found
+[0m14:18:59.188373 [debug] [MainThread]: Command `dbt run` failed at 14:18:59.188373 after 9.08 seconds
+[0m14:18:59.189373 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263EE43FDF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263EE76F550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000263EDDF5220>]}
+[0m14:18:59.189373 [debug] [MainThread]: Flushing usage events
+[0m14:19:00.501305 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m14:21:01.581479 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D43FFEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D66A2F70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D66A21C0>]}
+
+
+============================== 14:21:01.588014 | 4faaed91-2f1e-43f2-bb41-bf28a6b9c203 ==============================
+[0m14:21:01.588014 [info ] [MainThread]: Running with dbt=1.10.11
+[0m14:21:01.590016 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'quiet': 'False', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'invocation_command': 'dbt run', 'write_json': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'empty': 'False', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m14:21:07.010688 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E37DC9A0>]}
+[0m14:21:07.109625 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D66167F0>]}
+[0m14:21:07.111625 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m14:21:08.235044 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m14:21:08.622715 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 2 files added, 1 files changed.
+[0m14:21:08.623720 [debug] [MainThread]: Partial parsing: added file: realestate_analytics://models\stg_zipcodes.sql
+[0m14:21:08.624824 [debug] [MainThread]: Partial parsing: added file: realestate_analytics://models\sources.yml
+[0m14:21:08.626045 [debug] [MainThread]: Partial parsing: updated file: realestate_analytics://models\stg_transactions.sql
+[0m14:21:09.222951 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.dbt_project.example
+[0m14:21:09.242413 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E4254130>]}
+[0m14:21:09.385763 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m14:21:09.390763 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m14:21:09.446259 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E3E796A0>]}
+[0m14:21:09.447744 [info ] [MainThread]: Found 2 models, 2 sources, 495 macros
+[0m14:21:09.448745 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D665FC70>]}
+[0m14:21:09.451736 [info ] [MainThread]: 
+[0m14:21:09.452742 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m14:21:09.454160 [info ] [MainThread]: 
+[0m14:21:09.454160 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m14:21:09.462583 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m14:21:09.463723 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m14:21:15.323779 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m14:21:15.325164 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m14:21:16.006766 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D2A55FA0>]}
+[0m14:21:16.008767 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m14:21:16.018821 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_zipcodes
+[0m14:21:16.019814 [info ] [Thread-1  ]: 1 of 2 START sql view model real_estate_silver.stg_zipcodes .................... [RUN]
+[0m14:21:16.021816 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_zipcodes'
+[0m14:21:16.022814 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_zipcodes
+[0m14:21:16.036202 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_zipcodes"
+[0m14:21:16.039220 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_zipcodes
+[0m14:21:16.083672 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_zipcodes"
+[0m14:21:16.087797 [debug] [Thread-1  ]: On model.realestate_analytics.stg_zipcodes: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_zipcodes"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_zipcodes`
+  OPTIONS()
+  as -- models/stg_zipcodes.sql
+
+WITH source AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_zipcode`
+)
+
+SELECT
+    zipcode,
+    prefecture,
+    city_name,
+    district_name,
+    -- JOINするための結合キーを作成
+    prefecture || city_name || district_name AS address_key
+FROM
+    source;
+
+
+[0m14:21:16.088800 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m14:21:17.115725 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:1c3348d5-6bfc-4e61-8dd2-e69cbcca1ada&page=queryresults
+[0m14:21:17.847309 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E531BA30>]}
+[0m14:21:17.849309 [info ] [Thread-1  ]: 1 of 2 OK created sql view model real_estate_silver.stg_zipcodes ............... [[32mCREATE VIEW (0 processed)[0m in 1.82s]
+[0m14:21:17.850307 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_zipcodes
+[0m14:21:17.851703 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m14:21:17.853158 [info ] [Thread-1  ]: 2 of 2 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m14:21:17.854163 [debug] [Thread-1  ]: Re-using an available connection from the pool (formerly model.realestate_analytics.stg_zipcodes, now model.realestate_analytics.stg_transactions)
+[0m14:21:17.855160 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m14:21:17.862526 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m14:21:17.865772 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m14:21:17.870774 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m14:21:17.875228 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+-- JOIN対象の郵便番号モデルを先にCTEとして定義
+WITH zipcodes AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_silver`.`stg_zipcodes`
+),
+
+source AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_zipcode`
+    WHERE type NOT IN ('林地', '農地')
+),
+
+interim AS (
+    SELECT
+        type AS transaction_type,
+        price_info_type,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        SAFE_CAST(price_per_sq_m AS INT64) AS price_per_sq_m,
+        land_shape,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        building_structure,
+        purpose,
+        future_purpose,
+        road_direction,
+        road_type,
+        SAFE_CAST(road_width_m AS FLOAT64) AS road_width_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        CAST(
+            REPLACE(REPLACE(REPLACE(REPLACE(transaction_period, '年第1四半期', '-01-01'), '年第2四半期', '-04-01'), '年第3四半期', '-07-01'), '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes,
+
+        CASE
+            WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+        END AS built_year_ad,
+
+        CASE
+            WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
+            WHEN floor_plan = '１ＤＫ' THEN '1DK'
+            WHEN floor_plan = '１ＬＤＫ' THEN '1LDK'
+            WHEN floor_plan IN ('２Ｋ', '２ＤＫ') THEN '2K/DK'
+            WHEN floor_plan = '２ＬＤＫ' THEN '2LDK'
+            WHEN floor_plan IN ('３Ｋ', '３ＤＫ') THEN '3K/DK'
+            WHEN floor_plan = '３ＬＤＫ' THEN '3LDK'
+            WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
+            ELSE 'Other'
+        END AS floor_plan_category,
+
+        CASE
+            WHEN building_structure = 'ＳＲＣ' THEN 'SRC'
+            WHEN building_structure = 'ＲＣ' THEN 'RC'
+            WHEN building_structure IN ('鉄骨造', '軽量鉄骨造') THEN '鉄骨造'
+            WHEN building_structure = '木造' THEN '木造'
+            WHEN building_structure LIKE '%ＳＲＣ%' OR building_structure LIKE '%ＲＣ%' THEN '複合SRC/RC'
+            WHEN building_structure LIKE '%鉄骨%' THEN '複合鉄骨'
+            WHEN building_structure LIKE '%木造%' THEN '複合木造'
+            WHEN building_structure IS NULL THEN NULL
+            ELSE 'その他'
+        END AS building_structure_category,
+        
+        prefecture || city_name || district_name AS address_key
+
+    FROM source
+),
+
+joined AS (
+    SELECT
+        interim.*,
+        zipcodes.zipcode
+    FROM
+        interim
+    LEFT JOIN zipcodes
+        ON interim.address_key = zipcodes.address_key
+)
+
+-- 最終的な列の選択と順番の定義
+SELECT
+    transaction_type,
+    price_info_type,
+    zipcode, -- ★ 順番をここに移動
+    prefecture,
+    city_name,
+    district_name,
+    station_name,
+    distance_to_station_min,
+    total_price_jpy,
+    price_per_tsubo_jpy,
+    floor_plan,
+    floor_plan_category,
+    area_sq_m,
+    price_per_sq_m,
+    land_shape,
+    frontage_m,
+    total_floor_area_sq_m,
+    built_year_ad AS built_year,
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+    building_structure,
+    building_structure_category,
+    purpose,
+    future_purpose,
+    road_direction,
+    road_type,
+    road_width_m,
+    city_planning,
+    building_coverage_ratio_pct,
+    floor_area_ratio_pct,
+    transaction_date,
+    renovation,
+    special_notes
+FROM
+    joined;
+
+
+[0m14:21:17.877228 [debug] [Thread-1  ]: Opening a new connection, currently in state closed
+[0m14:21:18.955083 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:713e00b2-0e6c-4d33-9a96-84509ccb1a72&page=queryresults
+[0m14:21:19.028761 [error] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:713e00b2-0e6c-4d33-9a96-84509ccb1a72&page=queryresults
+[0m14:21:19.056671 [debug] [Thread-1  ]: Database Error in model stg_transactions (models\stg_transactions.sql)
+  Unrecognized name: type at [15:11]
+  compiled code at target\run\realestate_analytics\models\stg_transactions.sql
+[0m14:21:19.057671 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4faaed91-2f1e-43f2-bb41-bf28a6b9c203', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E57069A0>]}
+[0m14:21:19.059675 [error] [Thread-1  ]: 2 of 2 ERROR creating sql view model real_estate_silver.stg_transactions ....... [[31mERROR[0m in 1.20s]
+[0m14:21:19.061675 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m14:21:19.062674 [debug] [Thread-4  ]: Marking all children of 'model.realestate_analytics.stg_transactions' to be skipped because of status 'error'.  Reason: Database Error in model stg_transactions (models\stg_transactions.sql)
+  Unrecognized name: type at [15:11]
+  compiled code at target\run\realestate_analytics\models\stg_transactions.sql.
+[0m14:21:19.065672 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m14:21:19.066672 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m14:21:19.066672 [debug] [MainThread]: Connection 'list_real-estate-project-2025' was properly closed.
+[0m14:21:19.067670 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m14:21:19.068672 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m14:21:19.069179 [info ] [MainThread]: 
+[0m14:21:19.070551 [info ] [MainThread]: Finished running 2 view models in 0 hours 0 minutes and 9.62 seconds (9.62s).
+[0m14:21:19.072024 [debug] [MainThread]: Command end result
+[0m14:21:19.341142 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m14:21:19.346137 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m14:21:19.357280 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m14:21:19.358444 [info ] [MainThread]: 
+[0m14:21:19.359441 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m14:21:19.360825 [info ] [MainThread]: 
+[0m14:21:19.361826 [error] [MainThread]: [31mFailure in model stg_transactions (models\stg_transactions.sql)[0m
+[0m14:21:19.361826 [error] [MainThread]:   Database Error in model stg_transactions (models\stg_transactions.sql)
+  Unrecognized name: type at [15:11]
+  compiled code at target\run\realestate_analytics\models\stg_transactions.sql
+[0m14:21:19.363252 [info ] [MainThread]: 
+[0m14:21:19.364252 [info ] [MainThread]:   compiled code at target\compiled\realestate_analytics\models\stg_transactions.sql
+[0m14:21:19.365382 [info ] [MainThread]: 
+[0m14:21:19.366885 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=1 SKIP=0 NO-OP=0 TOTAL=2
+[0m14:21:19.368297 [debug] [MainThread]: Command `dbt run` failed at 14:21:19.368297 after 17.97 seconds
+[0m14:21:19.369297 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234D43FFEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E41824F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000234E36697F0>]}
+[0m14:21:19.370298 [debug] [MainThread]: Flushing usage events
+[0m14:21:20.641840 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m14:28:26.706855 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002786B88FEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002786DB32F70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002786DB321C0>]}
+
+
+============================== 14:28:26.714854 | b5402a6e-b5a5-4f70-ad22-7d80c3603416 ==============================
+[0m14:28:26.714854 [info ] [MainThread]: Running with dbt=1.10.11
+[0m14:28:26.715854 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\yshoo\\Desktop\\DataScience\\RealEstateAnalytics\\dbt_project\\logs', 'invocation_command': 'dbt run', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\yshoo\\.dbt', 'printer_width': '80', 'use_colors': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False', 'empty': 'False', 'partial_parse': 'True', 'static_parser': 'True', 'debug': 'False', 'version_check': 'True', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m14:28:33.345912 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027874B69070>]}
+[0m14:28:33.454956 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787ABC6880>]}
+[0m14:28:33.456957 [info ] [MainThread]: Registered adapter: bigquery=1.10.2
+[0m14:28:34.915853 [debug] [MainThread]: checksum: 5335e1629744fab92fa7809c625edbb36f0d7063a879d6215c971798f27e66f9, vars: {}, profile: , target: , version: 1.10.11
+[0m14:28:35.175252 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m14:28:35.176257 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002786D2675B0>]}
+[0m14:28:37.379692 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787B68A9A0>]}
+[0m14:28:37.521035 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m14:28:37.527059 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m14:28:37.579147 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002786B2B34C0>]}
+[0m14:28:37.581425 [info ] [MainThread]: Found 2 models, 2 sources, 495 macros
+[0m14:28:37.582426 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787B5FC970>]}
+[0m14:28:37.585784 [info ] [MainThread]: 
+[0m14:28:37.586807 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m14:28:37.587820 [info ] [MainThread]: 
+[0m14:28:37.589182 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m14:28:37.597177 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025'
+[0m14:28:37.599447 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m14:28:41.813296 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_real-estate-project-2025_real_estate_silver'
+[0m14:28:41.814678 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m14:28:42.493336 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787B5B24C0>]}
+[0m14:28:42.494334 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m14:28:42.502758 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_zipcodes
+[0m14:28:42.504847 [info ] [Thread-1  ]: 1 of 2 START sql view model real_estate_silver.stg_zipcodes .................... [RUN]
+[0m14:28:42.506055 [debug] [Thread-1  ]: Acquiring new bigquery connection 'model.realestate_analytics.stg_zipcodes'
+[0m14:28:42.507317 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_zipcodes
+[0m14:28:42.520379 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_zipcodes"
+[0m14:28:42.523797 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_zipcodes
+[0m14:28:42.571838 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_zipcodes"
+[0m14:28:42.575193 [debug] [Thread-1  ]: On model.realestate_analytics.stg_zipcodes: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_zipcodes"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_zipcodes`
+  OPTIONS()
+  as -- models/stg_zipcodes.sql
+
+WITH source AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_zipcode`
+)
+
+SELECT
+    zipcode,
+    prefecture,
+    city_name,
+    district_name,
+    -- JOINするための結合キーを作成
+    prefecture || city_name || district_name AS address_key
+FROM
+    source;
+
+
+[0m14:28:42.576209 [debug] [Thread-1  ]: Opening a new connection, currently in state init
+[0m14:28:43.435583 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:ed6b03ad-7258-4db4-93ad-e77d3dbb4703&page=queryresults
+[0m14:28:44.607665 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787B441430>]}
+[0m14:28:44.608972 [info ] [Thread-1  ]: 1 of 2 OK created sql view model real_estate_silver.stg_zipcodes ............... [[32mCREATE VIEW (0 processed)[0m in 2.10s]
+[0m14:28:44.609988 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_zipcodes
+[0m14:28:44.611457 [debug] [Thread-1  ]: Began running node model.realestate_analytics.stg_transactions
+[0m14:28:44.613914 [info ] [Thread-1  ]: 2 of 2 START sql view model real_estate_silver.stg_transactions ................ [RUN]
+[0m14:28:44.615916 [debug] [Thread-1  ]: Re-using an available connection from the pool (formerly model.realestate_analytics.stg_zipcodes, now model.realestate_analytics.stg_transactions)
+[0m14:28:44.617233 [debug] [Thread-1  ]: Began compiling node model.realestate_analytics.stg_transactions
+[0m14:28:44.626488 [debug] [Thread-1  ]: Writing injected SQL for node "model.realestate_analytics.stg_transactions"
+[0m14:28:44.629981 [debug] [Thread-1  ]: Began executing node model.realestate_analytics.stg_transactions
+[0m14:28:44.635978 [debug] [Thread-1  ]: Writing runtime sql for node "model.realestate_analytics.stg_transactions"
+[0m14:28:44.637979 [debug] [Thread-1  ]: On model.realestate_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.11", "profile_name": "realestate_analytics", "target_name": "dev", "node_id": "model.realestate_analytics.stg_transactions"} */
+
+
+  create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
+  OPTIONS()
+  as -- models/stg_transactions.sql
+
+-- JOIN対象の郵便番号モデルを先にCTEとして定義
+WITH zipcodes AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_silver`.`stg_zipcodes`
+),
+
+source AS (
+    SELECT * FROM `real-estate-project-2025`.`real_estate_bronze`.`raw_land`
+    WHERE type NOT IN ('林地', '農地')
+),
+
+interim AS (
+    SELECT
+        type AS transaction_type,
+        price_info_type,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        SAFE_CAST(total_price AS INT64) AS total_price_jpy,
+        SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
+        floor_plan,
+        SAFE_CAST(area_sq_m AS INT64) AS area_sq_m,
+        SAFE_CAST(price_per_sq_m AS INT64) AS price_per_sq_m,
+        land_shape,
+        SAFE_CAST(frontage AS FLOAT64) AS frontage_m,
+        SAFE_CAST(total_floor_area_sq_m AS INT64) AS total_floor_area_sq_m,
+        building_structure,
+        purpose,
+        future_purpose,
+        road_direction,
+        road_type,
+        SAFE_CAST(road_width_m AS FLOAT64) AS road_width_m,
+        city_planning,
+        SAFE_CAST(building_coverage_ratio_pct AS INT64) AS building_coverage_ratio_pct,
+        SAFE_CAST(floor_area_ratio_pct AS INT64) AS floor_area_ratio_pct,
+        CAST(
+            REPLACE(REPLACE(REPLACE(REPLACE(transaction_period, '年第1四半期', '-01-01'), '年第2四半期', '-04-01'), '年第3四半期', '-07-01'), '年第4四半期', '-10-01')
+        AS DATE) AS transaction_date,
+        renovation,
+        special_notes,
+
+        CASE
+            WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+            ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
+        END AS built_year_ad,
+
+        CASE
+            WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
+            WHEN floor_plan = '１ＤＫ' THEN '1DK'
+            WHEN floor_plan = '１ＬＤＫ' THEN '1LDK'
+            WHEN floor_plan IN ('２Ｋ', '２ＤＫ') THEN '2K/DK'
+            WHEN floor_plan = '２ＬＤＫ' THEN '2LDK'
+            WHEN floor_plan IN ('３Ｋ', '３ＤＫ') THEN '3K/DK'
+            WHEN floor_plan = '３ＬＤＫ' THEN '3LDK'
+            WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
+            ELSE 'Other'
+        END AS floor_plan_category,
+
+        CASE
+            WHEN building_structure = 'ＳＲＣ' THEN 'SRC'
+            WHEN building_structure = 'ＲＣ' THEN 'RC'
+            WHEN building_structure IN ('鉄骨造', '軽量鉄骨造') THEN '鉄骨造'
+            WHEN building_structure = '木造' THEN '木造'
+            WHEN building_structure LIKE '%ＳＲＣ%' OR building_structure LIKE '%ＲＣ%' THEN '複合SRC/RC'
+            WHEN building_structure LIKE '%鉄骨%' THEN '複合鉄骨'
+            WHEN building_structure LIKE '%木造%' THEN '複合木造'
+            WHEN building_structure IS NULL THEN NULL
+            ELSE 'その他'
+        END AS building_structure_category,
+        
+        prefecture || city_name || district_name AS address_key
+
+    FROM source
+),
+
+joined AS (
+    SELECT
+        interim.*,
+        zipcodes.zipcode
+    FROM
+        interim
+    LEFT JOIN zipcodes
+        ON interim.address_key = zipcodes.address_key
+)
+
+-- 最終的な列の選択と順番の定義
+SELECT
+    transaction_type,
+    price_info_type,
+    zipcode, -- ★ 順番をここに移動
+    prefecture,
+    city_name,
+    district_name,
+    station_name,
+    distance_to_station_min,
+    total_price_jpy,
+    price_per_tsubo_jpy,
+    floor_plan,
+    floor_plan_category,
+    area_sq_m,
+    price_per_sq_m,
+    land_shape,
+    frontage_m,
+    total_floor_area_sq_m,
+    built_year_ad AS built_year,
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+    building_structure,
+    building_structure_category,
+    purpose,
+    future_purpose,
+    road_direction,
+    road_type,
+    road_width_m,
+    city_planning,
+    building_coverage_ratio_pct,
+    floor_area_ratio_pct,
+    transaction_date,
+    renovation,
+    special_notes
+FROM
+    joined;
+
+
+[0m14:28:44.639010 [debug] [Thread-1  ]: Opening a new connection, currently in state closed
+[0m14:28:45.772280 [debug] [Thread-1  ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=real-estate-project-2025&j=bq:asia-northeast1:2af7846f-eca3-463c-b561-fcaf0e832d11&page=queryresults
+[0m14:28:46.265677 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b5402a6e-b5a5-4f70-ad22-7d80c3603416', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787B59DA00>]}
+[0m14:28:46.267728 [info ] [Thread-1  ]: 2 of 2 OK created sql view model real_estate_silver.stg_transactions ........... [[32mCREATE VIEW (0 processed)[0m in 1.65s]
+[0m14:28:46.268721 [debug] [Thread-1  ]: Finished running node model.realestate_analytics.stg_transactions
+[0m14:28:46.271408 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m14:28:46.272408 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m14:28:46.273495 [debug] [MainThread]: Connection 'list_real-estate-project-2025' was properly closed.
+[0m14:28:46.274728 [debug] [MainThread]: Connection 'list_real-estate-project-2025_real_estate_silver' was properly closed.
+[0m14:28:46.275897 [debug] [MainThread]: Connection 'model.realestate_analytics.stg_transactions' was properly closed.
+[0m14:28:46.277056 [info ] [MainThread]: 
+[0m14:28:46.278058 [info ] [MainThread]: Finished running 2 view models in 0 hours 0 minutes and 8.69 seconds (8.69s).
+[0m14:28:46.280289 [debug] [MainThread]: Command end result
+[0m14:28:46.322343 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\manifest.json
+[0m14:28:46.329534 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\semantic_manifest.json
+[0m14:28:46.342073 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\yshoo\Desktop\DataScience\RealEstateAnalytics\dbt_project\target\run_results.json
+[0m14:28:46.343069 [info ] [MainThread]: 
+[0m14:28:46.344067 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m14:28:46.345069 [info ] [MainThread]: 
+[0m14:28:46.346068 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+[0m14:28:46.347066 [debug] [MainThread]: Command `dbt run` succeeded at 14:28:46.347066 after 19.79 seconds
+[0m14:28:46.349005 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002786B88FEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027869C407C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002787B4D2940>]}
+[0m14:28:46.350118 [debug] [MainThread]: Flushing usage events
+[0m14:28:47.563228 [debug] [MainThread]: An error was encountered while trying to flush usage events

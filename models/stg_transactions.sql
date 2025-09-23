@@ -69,9 +69,8 @@ interim AS (
             ELSE 'その他'
         END AS building_structure_category,
         
-        -- ★★★ JOINキーの作成ロジックを修正 ★★★
-        -- '大字'という接頭辞を削除してから結合キーを作成
-        prefecture || city_name || TRIM(district_name, '大字') AS address_key
+        -- ★★★ JOINキーの作成ロジックを TRIM から REGEXP_REPLACE に修正 ★★★
+        prefecture || city_name || REGEXP_REPLACE(district_name, r'^大字', '') AS address_key
 
     FROM source
 ),
@@ -130,12 +129,8 @@ SELECT *
 FROM final
 WHERE
     -- 郵便番号が'100'で始まる島嶼部を除外
-    (zipcode IS NULL OR NOT STARTS_with(zipcode, '100'))
-    
-    -- ★★★ ここからが追記するコメント ★★★
-    -- 地区名(district_name)が空、または '(大字なし)' のデータを除外する。
-    -- これにより一部の23区データも除外されるが、調査の結果、
-    -- いずれも2016年以前の古いデータのため、分析対象外として許容する。
+    (zipcode IS NULL OR NOT STARTS_WITH(zipcode, '100'))
+    -- JOINキーとして機能しない地区名のデータを除外
     AND district_name IS NOT NULL
     AND district_name != ''
     AND district_name != '（大字なし）'

@@ -1,6 +1,5 @@
 -- models/stg_transactions.sql
 
--- JOIN対象の郵便番号モデルを先にCTEとして定義
 WITH zipcodes AS (
     SELECT * FROM {{ ref('stg_zipcodes') }}
 ),
@@ -41,14 +40,12 @@ interim AS (
         AS DATE) AS transaction_date,
         renovation,
         special_notes,
-
         CASE
             WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
             WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
             WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
             ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
         END AS built_year_ad,
-
         CASE
             WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
             WHEN floor_plan = '１ＤＫ' THEN '1DK'
@@ -60,7 +57,6 @@ interim AS (
             WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
             ELSE 'Other'
         END AS floor_plan_category,
-
         CASE
             WHEN building_structure = 'ＳＲＣ' THEN 'SRC'
             WHEN building_structure = 'ＲＣ' THEN 'RC'
@@ -73,7 +69,9 @@ interim AS (
             ELSE 'その他'
         END AS building_structure_category,
         
-        prefecture || city_name || district_name AS address_key
+        -- ★★★ JOINキーの作成ロジックを修正 ★★★
+        -- '大字'という接頭辞を削除してから結合キーを作成
+        prefecture || city_name || TRIM(district_name, '大字') AS address_key
 
     FROM source
 ),
@@ -86,41 +84,58 @@ joined AS (
         interim
     LEFT JOIN zipcodes
         ON interim.address_key = zipcodes.address_key
+),
+
+final AS (
+    -- 最終的な列の選択と順番の定義
+    SELECT
+        transaction_type,
+        price_info_type,
+        zipcode,
+        prefecture,
+        city_name,
+        district_name,
+        station_name,
+        distance_to_station_min,
+        total_price_jpy,
+        price_per_tsubo_jpy,
+        floor_plan,
+        floor_plan_category,
+        area_sq_m,
+        price_per_sq_m,
+        land_shape,
+        frontage_m,
+        total_floor_area_sq_m,
+        built_year_ad AS built_year,
+        EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+        building_structure,
+        building_structure_category,
+        purpose,
+        future_purpose,
+        road_direction,
+        road_type,
+        road_width_m,
+        city_planning,
+        building_coverage_ratio_pct,
+        floor_area_ratio_pct,
+        transaction_date,
+        renovation,
+        special_notes
+    FROM
+        joined
 )
 
--- 最終的な列の選択と順番の定義
-SELECT
-    transaction_type,
-    price_info_type,
-    zipcode, -- ★ 順番をここに移動
-    prefecture,
-    city_name,
-    district_name,
-    station_name,
-    distance_to_station_min,
-    total_price_jpy,
-    price_per_tsubo_jpy,
-    floor_plan,
-    floor_plan_category,
-    area_sq_m,
-    price_per_sq_m,
-    land_shape,
-    frontage_m,
-    total_floor_area_sq_m,
-    built_year_ad AS built_year,
-    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
-    building_structure,
-    building_structure_category,
-    purpose,
-    future_purpose,
-    road_direction,
-    road_type,
-    road_width_m,
-    city_planning,
-    building_coverage_ratio_pct,
-    floor_area_ratio_pct,
-    transaction_date,
-    renovation,
-    special_notes
-FROM
-    joined
+-- 最終的なフィルタリング
+SELECT *
+FROM final
+WHERE
+    -- 郵便番号が'100'で始まる島嶼部を除外
+    (zipcode IS NULL OR NOT STARTS_with(zipcode, '100'))
+    
+    -- ★★★ ここからが追記するコメント ★★★
+    -- 地区名(district_name)が空、または '(大字なし)' のデータを除外する。
+    -- これにより一部の23区データも除外されるが、調査の結果、
+    -- いずれも2016年以前の古いデータのため、分析対象外として許容する。
+    AND district_name IS NOT NULL
+    AND district_name != ''
+    AND district_name != '（大字なし）'

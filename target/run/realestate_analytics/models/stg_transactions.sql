@@ -73,8 +73,16 @@ interim AS (
             ELSE 'その他'
         END AS building_structure_category,
         
-        -- ★★★ JOINキーの作成ロジックを TRIM から REGEXP_REPLACE に修正 ★★★
-        prefecture || city_name || REGEXP_REPLACE(district_name, r'^大字', '') AS address_key
+        -- ★★★ こちらも全く同じ最終版のクリーニングロジックに修正 ★★★
+        prefecture || city_name || 
+            REPLACE(
+                REPLACE(
+                    REGEXP_REPLACE(
+                        REGEXP_REPLACE(district_name, r'^大字', ''), -- 1. 大字を除去
+                    r'（.*?）', ''), -- 2. 括弧を除去
+                'ケ', 'ヶ'), -- 3. ケをヶに統一
+            '澤', '沢') -- 4. 澤を沢に統一
+        AS address_key
 
     FROM source
 ),
@@ -91,49 +99,49 @@ joined AS (
 
 final AS (
     -- 最終的な列の選択と順番の定義
-    SELECT
-        transaction_type,
-        price_info_type,
-        zipcode,
-        prefecture,
-        city_name,
-        district_name,
-        station_name,
-        distance_to_station_min,
-        total_price_jpy,
-        price_per_tsubo_jpy,
-        floor_plan,
-        floor_plan_category,
-        area_sq_m,
-        price_per_sq_m,
-        land_shape,
-        frontage_m,
-        total_floor_area_sq_m,
-        built_year_ad AS built_year,
-        EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
-        building_structure,
-        building_structure_category,
-        purpose,
-        future_purpose,
-        road_direction,
-        road_type,
-        road_width_m,
-        city_planning,
-        building_coverage_ratio_pct,
-        floor_area_ratio_pct,
-        transaction_date,
-        renovation,
-        special_notes
-    FROM
-        joined
+    SELECT *
+    FROM joined
 )
 
 -- 最終的なフィルタリング
-SELECT *
+SELECT
+    transaction_type,
+    price_info_type,
+    zipcode,
+    prefecture,
+    city_name,
+    district_name,
+    station_name,
+    distance_to_station_min,
+    total_price_jpy,
+    price_per_tsubo_jpy,
+    floor_plan,
+    floor_plan_category,
+    area_sq_m,
+    price_per_sq_m,
+    land_shape,
+    frontage_m,
+    total_floor_area_sq_m,
+    built_year_ad AS built_year,
+    EXTRACT(YEAR FROM transaction_date) - built_year_ad AS building_age_at_transaction,
+    building_structure,
+    building_structure_category,
+    purpose,
+    future_purpose,
+    road_direction,
+    road_type,
+    road_width_m,
+    city_planning,
+    building_coverage_ratio_pct,
+    floor_area_ratio_pct,
+    transaction_date,
+    renovation,
+    special_notes
 FROM final
 WHERE
-    -- 郵便番号が'100'で始まる島嶼部を除外
-    (zipcode IS NULL OR NOT STARTS_WITH(zipcode, '100'))
+    -- ★★★ 島嶼部の市町村を分析対象から除外 ★★★
+    city_name NOT IN ('三宅村', '八丈町', '新島村', '大島町', '神津島村', '青ケ島村', '御蔵島村', '利島村', '小笠原村')
+    
     -- JOINキーとして機能しない地区名のデータを除外
     AND district_name IS NOT NULL
     AND district_name != ''

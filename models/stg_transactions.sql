@@ -1,5 +1,4 @@
--- models/stg_transactions.sql
-
+-- configを削除し、マクロ呼び出しに修正した最終版
 WITH zipcodes AS (
     SELECT * FROM {{ ref('stg_zipcodes') }}
 ),
@@ -17,7 +16,7 @@ interim AS (
         city_name,
         district_name,
         station_name,
-        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        distance_to_station_min,
         SAFE_CAST(total_price AS INT64) AS total_price_jpy,
         SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
         floor_plan,
@@ -68,16 +67,14 @@ interim AS (
             WHEN building_structure IS NULL THEN NULL
             ELSE 'その他'
         END AS building_structure_category,
-        
-        -- ★★★ こちらも全く同じ最終版のクリーニングロジックに修正 ★★★
         prefecture || city_name || 
             REPLACE(
                 REPLACE(
                     REGEXP_REPLACE(
-                        REGEXP_REPLACE(district_name, r'^大字', ''), -- 1. 大字を除去
-                    r'（.*?）', ''), -- 2. 括弧を除去
-                'ケ', 'ヶ'), -- 3. ケをヶに統一
-            '澤', '沢') -- 4. 澤を沢に統一
+                        REGEXP_REPLACE(district_name, r'^大字', ''),
+                    r'（.*?）', ''),
+                'ケ', 'ヶ'),
+            '澤', '沢')
         AS address_key
 
     FROM source
@@ -94,12 +91,31 @@ joined AS (
 ),
 
 final AS (
-    -- 最終的な列の選択と順番の定義
-    SELECT *
+    SELECT
+        * EXCEPT(distance_to_station_min), -- 元の文字列カラムを除外
+
+        CAST(
+            CASE
+                -- '～'か'~'を含む範囲の場合
+                WHEN REGEXP_CONTAINS(distance_to_station_min, '～|~') THEN
+                    (
+                        -- 前半部分をマクロで変換
+                        {{ parse_time_to_minutes("SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)]") }}
+                        +
+                        -- 後半部分をマクロで変換。ただし'2H～'のように後半がない場合は、前半と同じ値を使う
+                        COALESCE(
+                            {{ parse_time_to_minutes("SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)]") }},
+                            {{ parse_time_to_minutes("SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)]") }}
+                        )
+                    ) / 2
+                -- 範囲ではない単純な値の場合
+                ELSE {{ parse_time_to_minutes('distance_to_station_min') }}
+            END
+        AS INT64) AS distance_to_station_min -- クレンジング後の値を元のカラム名で作成
+
     FROM joined
 )
 
--- 最終的なフィルタリング
 SELECT
     transaction_type,
     price_info_type,
@@ -135,10 +151,7 @@ SELECT
     special_notes
 FROM final
 WHERE
-    -- ★★★ 島嶼部の市町村を分析対象から除外 ★★★
     city_name NOT IN ('三宅村', '八丈町', '新島村', '大島町', '神津島村', '青ケ島村', '御蔵島村', '利島村', '小笠原村')
-    
-    -- JOINキーとして機能しない地区名のデータを除外
     AND district_name IS NOT NULL
     AND district_name != ''
     AND district_name != '（大字なし）'

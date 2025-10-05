@@ -2,8 +2,7 @@
 
   create or replace view `real-estate-project-2025`.`real_estate_silver`.`stg_transactions`
   OPTIONS()
-  as -- models/stg_transactions.sql
-
+  as -- configを削除し、マクロ呼び出しに修正した最終版
 WITH zipcodes AS (
     SELECT * FROM `real-estate-project-2025`.`real_estate_silver`.`stg_zipcodes`
 ),
@@ -21,7 +20,7 @@ interim AS (
         city_name,
         district_name,
         station_name,
-        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        distance_to_station_min,
         SAFE_CAST(total_price AS INT64) AS total_price_jpy,
         SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
         floor_plan,
@@ -72,16 +71,14 @@ interim AS (
             WHEN building_structure IS NULL THEN NULL
             ELSE 'その他'
         END AS building_structure_category,
-        
-        -- ★★★ こちらも全く同じ最終版のクリーニングロジックに修正 ★★★
         prefecture || city_name || 
             REPLACE(
                 REPLACE(
                     REGEXP_REPLACE(
-                        REGEXP_REPLACE(district_name, r'^大字', ''), -- 1. 大字を除去
-                    r'（.*?）', ''), -- 2. 括弧を除去
-                'ケ', 'ヶ'), -- 3. ケをヶに統一
-            '澤', '沢') -- 4. 澤を沢に統一
+                        REGEXP_REPLACE(district_name, r'^大字', ''),
+                    r'（.*?）', ''),
+                'ケ', 'ヶ'),
+            '澤', '沢')
         AS address_key
 
     FROM source
@@ -98,12 +95,79 @@ joined AS (
 ),
 
 final AS (
-    -- 最終的な列の選択と順番の定義
-    SELECT *
+    SELECT
+        * EXCEPT(distance_to_station_min), -- 元の文字列カラムを除外
+
+        CAST(
+            CASE
+                -- '～'か'~'を含む範囲の場合
+                WHEN REGEXP_CONTAINS(distance_to_station_min, '～|~') THEN
+                    (
+                        -- 前半部分をマクロで変換
+                        
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+
+                        +
+                        -- 後半部分をマクロで変換。ただし'2H～'のように後半がない場合は、前半と同じ値を使う
+                        COALESCE(
+                            
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+,
+                            
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+
+                        )
+                    ) / 2
+                -- 範囲ではない単純な値の場合
+                ELSE 
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(distance_to_station_min, r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(distance_to_station_min, r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(distance_to_station_min, 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(distance_to_station_min, r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+
+            END
+        AS INT64) AS distance_to_station_min -- クレンジング後の値を元のカラム名で作成
+
     FROM joined
 )
 
--- 最終的なフィルタリング
 SELECT
     transaction_type,
     price_info_type,
@@ -139,10 +203,7 @@ SELECT
     special_notes
 FROM final
 WHERE
-    -- ★★★ 島嶼部の市町村を分析対象から除外 ★★★
     city_name NOT IN ('三宅村', '八丈町', '新島村', '大島町', '神津島村', '青ケ島村', '御蔵島村', '利島村', '小笠原村')
-    
-    -- JOINキーとして機能しない地区名のデータを除外
     AND district_name IS NOT NULL
     AND district_name != ''
     AND district_name != '（大字なし）';

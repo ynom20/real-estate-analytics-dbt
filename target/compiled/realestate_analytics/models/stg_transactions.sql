@@ -1,6 +1,4 @@
--- models/stg_transactions.sql
-
--- JOIN対象の郵便番号モデルを先にCTEとして定義
+-- configを削除し、マクロ呼び出しに修正した最終版
 WITH zipcodes AS (
     SELECT * FROM `real-estate-project-2025`.`real_estate_silver`.`stg_zipcodes`
 ),
@@ -18,7 +16,7 @@ interim AS (
         city_name,
         district_name,
         station_name,
-        SAFE_CAST(distance_to_station_min AS INT64) AS distance_to_station_min,
+        distance_to_station_min,
         SAFE_CAST(total_price AS INT64) AS total_price_jpy,
         SAFE_CAST(price_per_tsubo AS INT64) AS price_per_tsubo_jpy,
         floor_plan,
@@ -41,14 +39,12 @@ interim AS (
         AS DATE) AS transaction_date,
         renovation,
         special_notes,
-
         CASE
             WHEN STARTS_WITH(built_year, '昭和') THEN 1925 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
             WHEN STARTS_WITH(built_year, '平成') THEN 1988 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
             WHEN STARTS_WITH(built_year, '令和') THEN 2018 + SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
             ELSE SAFE_CAST(REGEXP_EXTRACT(built_year, r'(\d+)') AS INT64)
         END AS built_year_ad,
-
         CASE
             WHEN floor_plan IN ('１Ｒ', '１Ｋ', 'スタジオ', 'オープンフロア') THEN '1 Room'
             WHEN floor_plan = '１ＤＫ' THEN '1DK'
@@ -60,7 +56,6 @@ interim AS (
             WHEN floor_plan LIKE '４%' OR floor_plan LIKE '５%' OR floor_plan LIKE '６%' OR floor_plan LIKE '７%' THEN '4 Rooms+'
             ELSE 'Other'
         END AS floor_plan_category,
-
         CASE
             WHEN building_structure = 'ＳＲＣ' THEN 'SRC'
             WHEN building_structure = 'ＲＣ' THEN 'RC'
@@ -72,8 +67,15 @@ interim AS (
             WHEN building_structure IS NULL THEN NULL
             ELSE 'その他'
         END AS building_structure_category,
-        
-        prefecture || city_name || district_name AS address_key
+        prefecture || city_name || 
+            REPLACE(
+                REPLACE(
+                    REGEXP_REPLACE(
+                        REGEXP_REPLACE(district_name, r'^大字', ''),
+                    r'（.*?）', ''),
+                'ケ', 'ヶ'),
+            '澤', '沢')
+        AS address_key
 
     FROM source
 ),
@@ -86,13 +88,86 @@ joined AS (
         interim
     LEFT JOIN zipcodes
         ON interim.address_key = zipcodes.address_key
+),
+
+final AS (
+    SELECT
+        * EXCEPT(distance_to_station_min), -- 元の文字列カラムを除外
+
+        CAST(
+            CASE
+                -- '～'か'~'を含む範囲の場合
+                WHEN REGEXP_CONTAINS(distance_to_station_min, '～|~') THEN
+                    (
+                        -- 前半部分をマクロで変換
+                        
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+
+                        +
+                        -- 後半部分をマクロで変換。ただし'2H～'のように後半がない場合は、前半と同じ値を使う
+                        COALESCE(
+                            
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(1)], r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+,
+                            
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(SPLIT(REPLACE(distance_to_station_min, '~', '～'), '～')[SAFE_OFFSET(0)], r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+
+                        )
+                    ) / 2
+                -- 範囲ではない単純な値の場合
+                ELSE 
+    CAST(
+        -- 'H'の前の数値 (時間) を分に変換
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(distance_to_station_min, r'(\d+)H') AS INT64), 0) * 60 +
+        -- 'H'の後の数値 (分) を取得
+        COALESCE(SAFE_CAST(REGEXP_EXTRACT(distance_to_station_min, r'H(\d+)') AS INT64), 0) +
+        -- 'H'が含まれない場合の数値 (分) を取得
+        CASE
+            WHEN NOT REGEXP_CONTAINS(distance_to_station_min, 'H') THEN COALESCE(SAFE_CAST(REGEXP_EXTRACT(distance_to_station_min, r'(\d+)') AS INT64), 0)
+            ELSE 0
+        END
+    AS INT64)
+
+            END
+        AS INT64) AS distance_to_station_min -- クレンジング後の値を元のカラム名で作成
+
+    FROM joined
 )
 
--- 最終的な列の選択と順番の定義
 SELECT
     transaction_type,
     price_info_type,
-    zipcode, -- ★ 順番をここに移動
+    zipcode,
     prefecture,
     city_name,
     district_name,
@@ -122,5 +197,9 @@ SELECT
     transaction_date,
     renovation,
     special_notes
-FROM
-    joined
+FROM final
+WHERE
+    city_name NOT IN ('三宅村', '八丈町', '新島村', '大島町', '神津島村', '青ケ島村', '御蔵島村', '利島村', '小笠原村')
+    AND district_name IS NOT NULL
+    AND district_name != ''
+    AND district_name != '（大字なし）'

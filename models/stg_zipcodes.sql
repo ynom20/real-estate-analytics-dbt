@@ -9,7 +9,13 @@ SELECT
     prefecture,
     city_name,
     district_name,
-    -- JOINするための結合キーを作成
-    prefecture || city_name || district_name AS address_key
+     -- ★★★ 最終版の対称クリーニングロジック ★★★
+    prefecture || city_name ||
+        REPLACE(
+            REPLACE(
+                REGEXP_REPLACE(district_name, r'（.*?）', ''), -- 1. 括弧を除去
+            'ケ', 'ヶ'), -- 2. ケをヶに統一
+        '澤', '沢') -- 3. 澤を沢に統一
+    AS address_key
 FROM
     source

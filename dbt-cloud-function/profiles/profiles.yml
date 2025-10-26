@@ -1,0 +1,11 @@
+﻿realestate_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: real-estate-project-2025
+      dataset: real_estate_silver
+      threads: 4
+      timeout_seconds: 300
+      location: asia-northeast1

@@ -1,0 +1,72 @@
+﻿# ===================================
+# プロジェクト全体の.gitignore
+# ===================================
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+*.env
+.python-version
+
+# dbt (ルートレベルでの除外)
+# 各サブディレクトリの.gitignoreで個別管理されるため、ここでは最小限
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# 機密情報（GCP関連）
+*.json.key
+service-account*.json
+credentials.json
+*-key.json
+
+# データファイル（大容量）
+*.csv
+*.xlsx
+*.zip
+*.tar.gz
+data/
+raw_data/
+
+# 一時ファイル
+*.tmp
+*.bak
+*.cache
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Terraform（将来的に使う可能性）
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# ドキュメント生成の一時ファイル
+site/
+
+# LibreOffice/Excel Lockファイル
+.~lock.*#
+~$*
+
+# Rawデータディレクトリ
+Raw/
+raw_data/
+
+# Tableauの一時ファイル
+~*.twbr
+*.twbr~

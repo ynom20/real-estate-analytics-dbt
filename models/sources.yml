@@ -1,0 +1,12 @@
+# models/sources.yml
+
+version: 2
+
+sources:
+  - name: real_estate_bronze
+    database: real-estate-project-2025 # あなたのGCPプロジェクトID
+    dataset: real_estate_bronze
+
+    tables:
+      - name: raw_land
+      - name: raw_zipcode # ← ユーザー様が作成したテーブル名

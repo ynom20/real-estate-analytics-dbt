@@ -2,6 +2,12 @@
 # プロジェクト全体の.gitignore
 # ===================================
 
+# dbt関連（既存の設定を継承）
+logs/
+target/
+dbt_packages/
+.user.yml
+
 # Python
 __pycache__/
 *.pyc
@@ -11,10 +17,6 @@ __pycache__/
 venv/
 *.env
 .python-version
-
-# dbt (ルートレベルでの除外)
-# 各サブディレクトリの.gitignoreで個別管理されるため、ここでは最小限
-*.log
 
 # IDE
 .vscode/
@@ -41,6 +43,15 @@ credentials.json
 *.tar.gz
 data/
 raw_data/
+Raw/
+
+# LibreOffice/Excel Lockファイル
+.~lock.*#
+~$*
+
+# Tableauの一時ファイル
+~*.twbr
+*.twbr~
 
 # 一時ファイル
 *.tmp
@@ -58,15 +69,3 @@ raw_data/
 
 # ドキュメント生成の一時ファイル
 site/
-
-# LibreOffice/Excel Lockファイル
-.~lock.*#
-~$*
-
-# Rawデータディレクトリ
-Raw/
-raw_data/
-
-# Tableauの一時ファイル
-~*.twbr
-*.twbr~

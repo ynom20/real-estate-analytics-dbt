@@ -1,71 +1,30 @@
-﻿# ===================================
-# プロジェクト全体の.gitignore
-# ===================================
-
-# dbt関連（既存の設定を継承）
-logs/
-target/
-dbt_packages/
-.user.yml
+﻿# dbt artifacts (開発環境内で管理)
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
 
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.egg-info/
-.venv/
-venv/
-*.env
-.python-version
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
+.env
 
 # OS
+.DS_Store
 Thumbs.db
-desktop.ini
 
-# 機密情報（GCP関連）
-*.json.key
-service-account*.json
-credentials.json
-*-key.json
+# バックアップ
+backup_*/
+*.backup
 
-# データファイル（大容量）
-*.csv
-*.xlsx
-*.zip
-*.tar.gz
-data/
-raw_data/
+# 生データ（Git管理外）
 Raw/
+*.CSV
+*.csv
 
-# LibreOffice/Excel Lockファイル
-.~lock.*#
-~$*
-
-# Tableauの一時ファイル
+# Tableau一時ファイル
+*.twbr
 ~*.twbr
-*.twbr~
 
-# 一時ファイル
-*.tmp
-*.bak
-*.cache
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-*.ipynb
-
-# Terraform（将来的に使う可能性）
-*.tfstate
-*.tfstate.*
-.terraform/
-
-# ドキュメント生成の一時ファイル
-site/
+# その他の一時ファイル
+.vscode/
+.idea/

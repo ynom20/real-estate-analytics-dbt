@@ -46,3 +46,109 @@ models:
         tests:
           - unique
           - not_null
+  - name: mart_quarterly_metrics_by_city
+    description: |
+      四半期×市区町村×取引タイプ別の不動産取引集約メトリクス。
+      時系列分析とTableauでの可視化に最適化された集約マート。
+      
+      **用途**:
+      - 四半期推移の中央値分析
+      - 市区町村別の不動産価格トレンド分析
+      - 取引タイプ別の市場動向把握
+      
+      **データ粒度**: 
+      transaction_date (四半期の開始日) × prefecture × city_name × transaction_type
+      
+      **集計元**: stg_transactions (Silver層)
+      
+      **更新頻度**: 四半期ごと
+      
+    config:
+      materialized: table
+      
+    columns:
+      - name: transaction_date
+        description: "取引期間（四半期の開始日）。Tableauで年・四半期・月単位に集計可能。"
+        tests:
+          - not_null
+          
+      - name: prefecture
+        description: "都道府県名"
+        tests:
+          - not_null
+          
+      - name: city_name
+        description: "市区町村名"
+        tests:
+          - not_null
+          
+      - name: transaction_type
+        description: |
+          取引タイプ（例: 宅地(土地)、中古マンション等、中古戸建等）。
+          国土交通省の不動産取引データの分類に準拠。
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['宅地(土地)', '中古マンション等', '中古戸建等', '林地', '農地']
+              
+      - name: median_price_per_sq_m
+        description: |
+          平米単価の中央値（円/㎡）。
+          APPROX_QUANTILES関数で算出しているため、厳密な中央値ではなく近似値。
+          極端な外れ値の影響を受けにくいため、平均よりも市場の実勢価格を反映。
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 10000000
+              inclusive: true
+              
+      - name: median_area_sq_m
+        description: "取引面積の中央値（平米）"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 100000
+              inclusive: true
+              
+      - name: median_building_age
+        description: |
+          築年数の中央値（年）。
+          取引時点での築年数を集計。
+          NULL値は新築物件または築年数不明を示す。
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 200
+              inclusive: true
+              
+      - name: median_distance_to_station
+        description: |
+          最寄り駅からの距離の中央値（分）。
+          徒歩での所要時間を想定。
+          2H（120分）を超える場合も分単位で格納。
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 500
+              inclusive: true
+              
+      - name: transaction_count
+        description: |
+          該当する四半期×市区町村×取引タイプの組み合わせでの取引件数。
+          HAVING句で最低5件以上のみを集計対象としているため、
+          統計的信頼性が一定程度担保されている。
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 5"
+              
+    tests:
+      # 複合キーのユニーク性検証
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - transaction_date
+            - prefecture
+            - city_name
+            - transaction_type

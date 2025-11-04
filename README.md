@@ -157,15 +157,5 @@ graph LR
 ## 🔗 リンク
 
 - **Cloud Functions URL**: https://asia-northeast1-real-estate-project-2025.cloudfunctions.net/dbt-runner
-- **実装記録(Notion)**: [Working Memo from Claude]
-- **キャリア戦略(Notion)**: [Data Analytics and Generative AI]
 
 ---
-
-## 📝 ライセンス
-
-MIT License
-
-## 👤 作者
-
-Yu Nomura - [LinkedIn](https://www.linkedin.com/in/yourprofile)

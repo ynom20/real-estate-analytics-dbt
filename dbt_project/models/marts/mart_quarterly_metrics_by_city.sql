@@ -1,3 +1,4 @@
+例: -- 2025年11月9日更新: Tableau用マート
 WITH transactions AS (
     SELECT
         *

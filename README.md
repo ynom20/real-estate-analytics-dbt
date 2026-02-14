@@ -159,3 +159,59 @@ graph LR
 - **Cloud Functions URL**: https://asia-northeast1-real-estate-project-2025.cloudfunctions.net/dbt-runner
 
 ---
+
+## 四半期データ更新手順
+
+### Overview
+
+New quarterly transaction data from Japan's Ministry of Land, Infrastructure, Transport and Tourism can be added to the pipeline by loading CSV files into the Bronze layer. Thanks to the ELT architecture, Silver and Gold layers are automatically updated via `dbt run`.
+
+### Prerequisites
+
+- Google Cloud SDK authenticated (`gcloud auth application-default login`)
+- CSV file converted from Shift_JIS to UTF-8 (use VS Code: "Save with Encoding" → UTF-8)
+
+### Steps
+
+```powershell
+# 1. Authenticate (required if session expired)
+gcloud auth application-default login
+
+# 2. Check current state
+bq query --use_legacy_sql=false --format=pretty 'SELECT transaction_period, COUNT(*) as count FROM `real-estate-project-2025.real_estate_bronze.raw_land` GROUP BY transaction_period ORDER BY transaction_period DESC'
+
+# 3. Backup existing data
+bq cp real_estate_bronze.raw_land real_estate_bronze.raw_land_backup_YYYYMMDD
+
+# 4. Upload CSV (from Raw/ directory)
+cd Raw/
+bq load --source_format=CSV --skip_leading_rows=1 --encoding=UTF-8 --noreplace real_estate_bronze.raw_land <filename>.csv
+
+# 5. Verify upload
+bq query --use_legacy_sql=false --format=pretty 'SELECT transaction_period, COUNT(*) as count FROM `real-estate-project-2025.real_estate_bronze.raw_land` GROUP BY transaction_period ORDER BY transaction_period DESC'
+
+# 6. Run dbt transformations (from dbt_project/ directory)
+cd ../dbt_project/
+dbt run
+
+# 7. Verify Gold layer
+bq query --use_legacy_sql=false --format=pretty 'SELECT EXTRACT(YEAR FROM transaction_date) AS year, EXTRACT(QUARTER FROM transaction_date) AS quarter, COUNT(*) AS record_count FROM `real-estate-project-2025.real_estate_gold.fct_transactions` WHERE transaction_date IS NOT NULL GROUP BY year, quarter ORDER BY year, quarter'
+
+# 8. Git workflow (from repository root)
+cd ..
+git checkout -b feat/add-latest-quarter-data
+git add .
+git commit -m "feat(bronze): add latest quarterly transaction data"
+git push origin feat/add-latest-quarter-data
+# → Create Pull Request on GitHub → Merge
+```
+
+### Key Notes
+
+| Topic | Detail |
+|-------|--------|
+| **Encoding** | MLIT CSV files use Shift_JIS. Convert to UTF-8 before upload. |
+| **Append mode** | `--noreplace` flag ensures existing data is preserved. |
+| **PowerShell quoting** | Use **single quotes** for `bq query` commands. Backticks inside double quotes are interpreted as escape characters (e.g., `` `r `` becomes carriage return). |
+| **Authentication** | Run `gcloud auth application-default login` if `Access Denied` errors occur after extended periods of inactivity. |
+| **dbt SQL comments** | Avoid Japanese characters in `.sql` files to prevent encoding errors. Use English comments. |

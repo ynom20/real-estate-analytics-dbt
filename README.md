@@ -161,56 +161,56 @@ graph LR
 
 ## 四半期データ更新手順
 
-### Overview
+### 概要
 
-New quarterly transaction data from Japan's Ministry of Land, Infrastructure, Transport and Tourism can be added to the pipeline by loading CSV files into the Bronze layer. Thanks to the ELT architecture, Silver and Gold layers are automatically updated via `dbt run`.
+国土交通省が四半期ごとに公開する不動産取引データは、CSVファイルをBronze層に読み込むだけでパイプラインに追加できる。ELT構成のため、Silver層とGold層は `dbt run` で自動的に更新される。
 
-### Prerequisites
+### 前提条件
 
-- Google Cloud SDK authenticated (`gcloud auth application-default login`)
-- CSV file converted from Shift_JIS to UTF-8 (use VS Code: "Save with Encoding" → UTF-8)
+- Google Cloud SDKで認証済みであること（`gcloud auth application-default login`）
+- CSVファイルをShift_JISからUTF-8に変換済みであること（VS Codeの「エンコード付きで保存」→ UTF-8）
 
-### Steps
+### 手順
 
 ```powershell
-# 1. Authenticate (required if session expired)
+# 1. 認証（セッションが切れている場合に実行）
 gcloud auth application-default login
 
-# 2. Check current state
+# 2. 現在のデータ件数を確認
 bq query --use_legacy_sql=false --format=pretty 'SELECT transaction_period, COUNT(*) as count FROM `real-estate-project-2025.real_estate_bronze.raw_land` GROUP BY transaction_period ORDER BY transaction_period DESC'
 
-# 3. Backup existing data
+# 3. 既存データをバックアップ
 bq cp real_estate_bronze.raw_land real_estate_bronze.raw_land_backup_YYYYMMDD
 
-# 4. Upload CSV (from Raw/ directory)
+# 4. CSVを読み込む（Raw/ ディレクトリで実行）
 cd Raw/
 bq load --source_format=CSV --skip_leading_rows=1 --encoding=UTF-8 --noreplace real_estate_bronze.raw_land <filename>.csv
 
-# 5. Verify upload
+# 5. 読み込み結果を確認
 bq query --use_legacy_sql=false --format=pretty 'SELECT transaction_period, COUNT(*) as count FROM `real-estate-project-2025.real_estate_bronze.raw_land` GROUP BY transaction_period ORDER BY transaction_period DESC'
 
-# 6. Run dbt transformations (from dbt_project/ directory)
+# 6. dbtで変換を実行（dbt_project/ ディレクトリで実行）
 cd ../dbt_project/
 dbt run
 
-# 7. Verify Gold layer
+# 7. Gold層の件数を確認
 bq query --use_legacy_sql=false --format=pretty 'SELECT EXTRACT(YEAR FROM transaction_date) AS year, EXTRACT(QUARTER FROM transaction_date) AS quarter, COUNT(*) AS record_count FROM `real-estate-project-2025.real_estate_gold.fct_transactions` WHERE transaction_date IS NOT NULL GROUP BY year, quarter ORDER BY year, quarter'
 
-# 8. Git workflow (from repository root)
+# 8. Gitでの反映（リポジトリのルートで実行）
 cd ..
 git checkout -b feat/add-latest-quarter-data
 git add .
 git commit -m "feat(bronze): add latest quarterly transaction data"
 git push origin feat/add-latest-quarter-data
-# → Create Pull Request on GitHub → Merge
+# → GitHubでプルリクエストを作成 → マージ
 ```
 
-### Key Notes
+### 注意点
 
-| Topic | Detail |
+| 項目 | 内容 |
 |-------|--------|
-| **Encoding** | MLIT CSV files use Shift_JIS. Convert to UTF-8 before upload. |
-| **Append mode** | `--noreplace` flag ensures existing data is preserved. |
-| **PowerShell quoting** | Use **single quotes** for `bq query` commands. Backticks inside double quotes are interpreted as escape characters (e.g., `` `r `` becomes carriage return). |
-| **Authentication** | Run `gcloud auth application-default login` if `Access Denied` errors occur after extended periods of inactivity. |
-| **dbt SQL comments** | Avoid Japanese characters in `.sql` files to prevent encoding errors. Use English comments. |
+| **文字コード** | 国土交通省のCSVはShift_JIS。読み込む前にUTF-8へ変換する。 |
+| **追記モード** | `--noreplace` を付けると、既存のデータを残したまま追記される。 |
+| **PowerShellの引用符** | `bq query` のコマンドは**シングルクォート**で囲む。ダブルクォートの中のバッククォートはエスケープ文字として解釈される（例：`` `r `` は復帰文字になる）。 |
+| **認証** | しばらく使わずに `Access Denied` エラーが出たら、`gcloud auth application-default login` を実行する。 |
+| **dbtのSQLコメント** | `.sql` ファイルに日本語を入れると文字コードのエラーが起きるため、コメントは英語で書く。 |

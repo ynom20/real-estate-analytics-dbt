@@ -12,7 +12,6 @@
 
 ### 🎯 目的
 - モダンデータスタックの実践的スキル習得
-- ポートフォリオとしてのアピール
 - データエンジニアリングのベストプラクティス実装
 
 ### 🛠️ 技術スタック
@@ -30,10 +29,10 @@
 ```
 real-estate-analytics-dbt/
 │
-├── sync-dbt-project.ps1      # NEW: 同期スクリプト
-├── deploy-dbt-function.ps1   # NEW: デプロイスクリプト  
-├── run-dbt.ps1               # NEW: 実行スクリプト
-├── README.md                 # UPDATED: 完全ドキュメント
+├── sync-dbt-project.ps1      # 同期スクリプト
+├── deploy-dbt-function.ps1   # デプロイスクリプト  
+├── run-dbt.ps1               # 実行スクリプト
+├── README.md                 # ドキュメント
 │
 ├── dbt_project/              # 開発環境
 │   ├── models/
